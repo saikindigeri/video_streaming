@@ -1,4 +1,6 @@
 "use client";
+
+
 import { createContext, useState, useEffect } from "react";
 
 const ThemeAndVideoContext = createContext({
@@ -31,8 +33,14 @@ export const ThemeAndVideoProvider = ({ children }) => {
   };
 
   const addVideo = (video) => {
-    setSavedVideos((prevVideos) => [...prevVideos, video]);
-  };
+    setSavedVideos((prevVideos) => {
+        if (!prevVideos.some((v) => v.id === video.id)) {
+            return [...prevVideos, video];
+        }
+        return prevVideos;
+    });
+};
+
 
   return (
     <ThemeAndVideoContext.Provider

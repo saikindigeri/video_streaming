@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Image from "next/image";
 import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
+import Link from "next/link";
 
 const Home = () => {
   const [showBanner, setShowBanner] = useState(true); // State for banner visibility
@@ -118,7 +119,7 @@ const Home = () => {
             }`}
           >
             {videos.map((eachVideo) => (
-              <li
+              <Link href={`videos/${eachVideo.id}`}
                 key={eachVideo.id}
                 className="p-1 w-70 m-2 list-none flex flex-col"
               >
@@ -142,7 +143,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-              </li>
+              </Link>
             ))}
           </div>
         </div>
