@@ -1,13 +1,17 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
+import Link from 'next/link'
+import { SiYoutubegaming } from 'react-icons/si'
+import { HiFire } from 'react-icons/hi'
+import ThemeAndVideoContext from '../context/ThemeAndVideoContext'
 
 const Trending = () => {
 
 const [trendingVideos, setTrendingVideos] = useState([]);
-
+const {isDarkTheme}=useContext(ThemeAndVideoContext)
 useEffect(()=>{
 
     const fetchTrendingVideos = async () => {
@@ -56,15 +60,21 @@ useEffect(()=>{
             <div className="flex-1 md:ml-50 ml-24   md:mb-0 mb-15 mt-15 overflow-y-auto min-h-screen">
                  {/* Banner Section */}
        
-            
+              <div className={`flex p-6 items-center justify-start   ${isDarkTheme?'bg-stone-800':
+                'bg-gray-200'}`} >
+                                      <div className='flex m-1 mr-2 text-red-700  bg-gray-500 dark:bg-gray-950 rounded-full justify-center text-center items-center  ml-2 h-[45px] w-[45px] '><HiFire size={22}/></div>
+                                      <h2 className='font-semibold'>Trending</h2>
+                                     </div>
        
                  {/* Video List (Moves Up When Banner is Closed) */}
               
                  <div
                    className={`flex flex-col justify-start  transition-all duration-300 `}
                  >
+
+               
                    {trendingVideos.map((eachVideo) => (
-                     <li
+                 <Link href={`videos/${eachVideo.id}`}
                        key={eachVideo.id}
                        className="p-1 w-full m-2 list-none flex flex-col"
                      >
@@ -83,7 +93,7 @@ useEffect(()=>{
                            </div>
                         
                        </div>
-                     </li>
+                     </Link>
                    ))}
                  </div>
                </div> 

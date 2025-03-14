@@ -18,8 +18,8 @@ export default function Header() {
   };
 
   return (
-    <header className={`fixed h-15 top-0 left-0 w-full z-50 shadow-md transition ${
-      isDarkTheme ? "bg-gray-900 text-white" : "bg-white text-black"
+    <header className={`fixed h-15 top-0 left-0 w-full z-50  transition ${
+      isDarkTheme ? "bg-neutral-700" : "bg-white"
     }`}>
       <div className="container mx-auto flex  justify-between items-center p-4">
         

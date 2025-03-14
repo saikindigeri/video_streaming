@@ -1,6 +1,4 @@
 "use client";
-
-
 import { createContext, useState, useEffect } from "react";
 
 const ThemeAndVideoContext = createContext({
@@ -32,19 +30,32 @@ export const ThemeAndVideoProvider = ({ children }) => {
     });
   };
 
+
+
   const addVideo = (video) => {
     setSavedVideos((prevVideos) => {
-        if (!prevVideos.some((v) => v.id === video.id)) {
-            return [...prevVideos, video];
-        }
-        return prevVideos;
+      const isAlreadySaved = prevVideos.some((eachVideo) => eachVideo.id === video.id);
+  
+      if (isAlreadySaved) {
+        console.log("Removing video:", video.id);
+        return prevVideos.filter((eachVideo) => eachVideo.id !== video.id); // Remove video
+      } else {
+        console.log("Adding video:", video.id);
+        return [...prevVideos, video]; // Add video
+      }
     });
-};
+  };
+  
+  
+  const removeVideo = (video) => {
+    setSavedVideos((prevVideos) => prevVideos.filter((eachVideo) => eachVideo.id !== video.id));
+  };
+  
 
 
   return (
     <ThemeAndVideoContext.Provider
-      value={{ isDarkTheme, toggleTheme, savedVideos, addVideo }}
+      value={{ isDarkTheme, toggleTheme, savedVideos, addVideo,removeVideo }}
     >
       {children}
     </ThemeAndVideoContext.Provider>

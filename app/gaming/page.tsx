@@ -1,13 +1,17 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
+import Link from 'next/link'
+import Image from 'next/image'
+import { SiYoutubegaming } from 'react-icons/si'
+import ThemeAndVideoContext from '../context/ThemeAndVideoContext'
 
 const Gaming = () => {
 
 const [gamingVideos, setGamingVideos] = useState([]);
-
+const {isDarkTheme}=useContext(ThemeAndVideoContext);
 useEffect(()=>{
 
     const fetchGamingVideos = async () => {
@@ -54,19 +58,23 @@ useEffect(()=>{
                  {/* Banner Section */}
        
             
-       
+         <div className={`flex p-6 items-center justify-start   ${isDarkTheme?'bg-stone-800':
+                'bg-gray-200'}`}>
+                          <div className='flex m-1 mr-2 text-red-700 bg-gray-700  rounded-full justify-center text-center items-center  ml-2 h-[45px] w-[45px] '><SiYoutubegaming/></div>
+                          <h1 className='font-semibold'>Gaming</h1>
+                         </div>
                  {/* Video List (Moves Up When Banner is Closed) */}
               
                  <div
                    className={`flex flex-wrap   transition-all duration-300 `}
                  >
                    {gamingVideos.map((eachVideo) => (
-                     <li
+                  <Link href={`videos/${eachVideo.id}`}
                        key={eachVideo.id}
                        className="p-1  m-2 list-none flex flex-col"
                      >
                        <div className='flex flex-col '>
-                         <img alt="thumnail" className='w-40' src={eachVideo.thumbnailUrl} />
+                         <Image width={100} height={100} alt="thumnail" className='w-40' src={eachVideo.thumbnailUrl} />
        
                       
                        
@@ -80,7 +88,7 @@ useEffect(()=>{
                            </div>
                         
                        </div>
-                     </li>
+                     </Link>
                    ))}
                  </div>
                </div> 
