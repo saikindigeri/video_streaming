@@ -4,11 +4,15 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FiMenu, FiUser, FiLogOut, FiSun, FiMoon } from "react-icons/fi";
 import ThemeAndVideoContext from "../context/ThemeAndVideoContext";
+import Image from "next/image";
+import { BsBrightnessHigh, BsMoon } from "react-icons/bs";
+import { HiMoon } from "react-icons/hi";
+import { IoPersonCircle, IoSunny } from "react-icons/io5";
 
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { isDarkTheme, toggleTheme } = useContext(ThemeAndVideoContext);
+  const { isDarkTheme, toggleTheme,changeTab } = useContext(ThemeAndVideoContext);
   const router = useRouter();
 
   const handleLogout = () => {
@@ -16,6 +20,10 @@ export default function Header() {
     alert("Logged out successfully!");
     router.push("/login"); // Redirect to login page
   };
+
+
+
+
 
   return (
     <header className={`fixed h-15 top-0 left-0 w-full z-50  transition ${
@@ -26,9 +34,15 @@ export default function Header() {
      
      
        <Link href="/">
-            <span className="text-2xl font-bold text-black cursor-pointer">
-              MyLogo
-            </span>
+       <Image width={80} height={80}
+              src={
+                isDarkTheme
+                  ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                  : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+              }
+              alt="website logo"
+              onClick={()=>changeTab('Home')}
+            />
           </Link>
 
       
@@ -37,27 +51,27 @@ export default function Header() {
       
 
       
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-2">
           {/* Theme Toggle Button */}
           <button 
             onClick={toggleTheme} 
             className="p-2 rounded-full    transition"
           >
-            {isDarkTheme ? <FiSun size={20} /> : <FiMoon size={20} />}
+            {isDarkTheme ? <IoSunny  size={20} /> : <HiMoon   size={20} />}
           </button>
-
+        
           {/* Profile Icon */}
           <Link href="/profile">
-            <FiUser size={24} className="  cursor-pointer" />
+            <IoPersonCircle size={24} className=" cursor-pointer" />
           </Link>
 
           {/* Logout Button */}
           <button 
             onClick={handleLogout} 
-            className="flex items-center space-x-2 pb-2  px-4 py-2 rounded transition"
+            className="flex items-center border-ouline space-x-2 pb-2  px-4 py-2 rounded transition"
           >
-            <FiLogOut size={20} />
-            <span>Logout</span>
+           
+            <span className="font-roboto text-[14px]">Logout</span>
           </button>
         </div>
       </div>

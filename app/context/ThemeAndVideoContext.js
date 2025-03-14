@@ -6,11 +6,15 @@ const ThemeAndVideoContext = createContext({
   savedVideos: [],
   toggleTheme: () => {},
   addVideo: () => {},
+  activeTab: "Home",
+  changeTab: () => {},
+  
 });
 
 export const ThemeAndVideoProvider = ({ children }) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [savedVideos, setSavedVideos] = useState([]);
+  const [activeTab, setActiveTab] = useState("home");
 
   // Load theme from localStorage on mount
   useEffect(() => {
@@ -47,15 +51,16 @@ export const ThemeAndVideoProvider = ({ children }) => {
   };
   
   
-  const removeVideo = (video) => {
-    setSavedVideos((prevVideos) => prevVideos.filter((eachVideo) => eachVideo.id !== video.id));
-  };
-  
 
+  
+  const changeTab = (tab) => {
+    console.log("Changing tab to:", tab);
+    setActiveTab(tab);
+  };
 
   return (
     <ThemeAndVideoContext.Provider
-      value={{ isDarkTheme, toggleTheme, savedVideos, addVideo,removeVideo }}
+      value={{ isDarkTheme, toggleTheme, savedVideos, addVideo,activeTab,setActiveTab ,changeTab}}
     >
       {children}
     </ThemeAndVideoContext.Provider>
