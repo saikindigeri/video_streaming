@@ -2,11 +2,12 @@
 
 import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { SiYoutubegaming } from 'react-icons/si'
 import ThemeAndVideoContext from '../context/ThemeAndVideoContext'
+import Sidebar from '../components/Sidebar'
 
 interface Video {
   id: string;

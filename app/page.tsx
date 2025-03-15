@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
+
 import Image from "next/image";
 import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import Link from "next/link";
+import Sidebar from "./components/Sidebar";
 
 interface Video {
   id: string;
