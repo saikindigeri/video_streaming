@@ -34,7 +34,7 @@ const Header: React.FC = () => {
                 : "https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
             }
             alt="website logo"
-            onClick={() => changeTab("Home")}
+            onClick={() => changeTab()}
           />
         </Link>
 
