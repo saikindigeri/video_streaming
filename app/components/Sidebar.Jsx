@@ -21,7 +21,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <nav className={`fixed top-[60px] flex flex-col  justify-between left-0  transition-all duration-300 w-24 md:w-50 ${isDarkTheme ? "bg-neutral-700 text-white" : "bg-white text-black"} `}>
+    <nav className={`fixed top-[60px] flex flex-col h-[calc(100vh-60px)] justify-between left-0 transition-all duration-300 w-24 md:w-50 ${isDarkTheme ? "bg-neutral-700 text-white" : "bg-white text-black"} `}>
       {/* Menu List */}
       <div className="flex flex-col justify-center items-center md:justify-start py-6 space-y-2">
         {menuItems.map((item, index) => (
@@ -40,7 +40,7 @@ export default function Sidebar() {
       </div>
 
       {/* Connect With Us Section */}
-      <div className="flex flex-col items-center p-4 border-t border-gray-300">
+      <div className="flex flex-col items-center p-4  border-gray-300">
         <h2 className="text-sm font-semibold mb-2">Connect with us</h2>
         <div className="flex space-x-3">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">

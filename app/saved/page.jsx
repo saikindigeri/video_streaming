@@ -1,12 +1,13 @@
 'use client'
 
 import React, { useContext } from 'react'
-import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
+
 import ThemeAndVideoContext, { ThemeAndVideoContextType, Video } from '../context/ThemeAndVideoContext'
 import Link from 'next/link'
 import { CgPlayListAdd } from 'react-icons/cg'
 import Image from 'next/image'
+import Header from '../components/Header'
+import Sidebar from '../components/Sidebar'
 
 const Saved = () => {
 
