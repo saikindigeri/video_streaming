@@ -14,7 +14,7 @@ const ThemeAndVideoContext = createContext({
 export const ThemeAndVideoProvider = ({ children }) => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [savedVideos, setSavedVideos] = useState([]);
-  const [activeTab, setActiveTab] = useState("home");
+  const [activeTab, setActiveTab] = useState("Home");
 
   // Load theme from localStorage on mount
   useEffect(() => {
@@ -53,7 +53,7 @@ export const ThemeAndVideoProvider = ({ children }) => {
   
 
   
-  const changeTab = (tab:string) => {
+  const changeTab = (tab) => {
     console.log("Changing tab to:", tab);
     setActiveTab(tab);
   };

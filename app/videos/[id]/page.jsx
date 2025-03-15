@@ -8,30 +8,18 @@ import { BiListPlus } from "react-icons/bi";
 import Header from "@/app/components/Header";
 import Sidebar from "@/app/components/Sidebar";
 import ThemeAndVideoContext from "@/app/context/ThemeAndVideoContext";
-import Image from "next/image";
 
-interface VideoDetails {
-  id: string;
-  title: string;
-  videoUrl: string;
-  thumbnailUrl: string;
-  viewCount: string;
-  publishedAt: string;
-  description: string;
-  name: string;
-  profileImage: string;
-  subscriberCount: string;
-}
+const VideoDetailPage = () => {
+  const { id } = useParams(); // Get video ID dynamically
+  const [video, setVideo] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [likeStatus, setLikeStatus] = useState(null); // "like", "dislike", or null
+  
+  const { addVideo,savedVideos } = useContext(ThemeAndVideoContext);
 
-const VideoDetailPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // Get video ID dynamically
-  const [video, setVideo] = useState<VideoDetails | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [likeStatus, setLikeStatus] = useState<"like" | "dislike" | null>(null);
 
-  const { addVideo, savedVideos } = useContext(ThemeAndVideoContext);
-  const saveVideo = (video: VideoDetails) => {
+  const saveVideo = (video) => {
     addVideo(video);
   };
 
@@ -41,18 +29,23 @@ const VideoDetailPage: React.FC = () => {
     const fetchVideoDetails = async () => {
       const jwtToken = localStorage.getItem("jwtToken");
 
-      const options: RequestInit = {
+      const options = {
         headers: {
           Authorization: `Bearer ${jwtToken}`,
         },
         method: "GET",
       };
       try {
-        const response = await fetch(`https://apis.ccbp.in/videos/${id}`, options);
+        const response = await fetch(
+          `https://apis.ccbp.in/videos/${id}`,
+          options
+        );
 
         if (!response.ok) throw new Error("Failed to fetch video");
 
         const data = await response.json();
+
+        console.log(data);
 
         setVideo({
           id: data.video_details.id,
@@ -67,7 +60,7 @@ const VideoDetailPage: React.FC = () => {
           subscriberCount: data.video_details.channel.subscriber_count,
         });
       } catch (err) {
-        setError((err as Error).message);
+        setError(err.message);
       } finally {
         setLoading(false);
       }
@@ -92,18 +85,23 @@ const VideoDetailPage: React.FC = () => {
       <Header />
       <div>
         <Sidebar />
-        <div className="flex-1 py-6 md:ml-50 ml-25 mt-20 min-h-screen">
-          <div className="w-full ml-3 mr-3 h-[400px]">
-            <ReactPlayer url={video?.videoUrl} controls width="100%" height="100%" />
+        <div className=" flex-1 py-6 md:ml-50 ml-25 mt-20 min-h-screen">
+          <div className="w-100% ml-3 mr-3 h-[400px]">
+            <ReactPlayer
+              url={video.videoUrl}
+              controls
+              width="100%"
+              height="100%"
+            />
           </div>
           <div className="ml-3 mb-1 mr-3">
-            <h1 className="text-[14px] mb-4">{video?.title}</h1>
+            <h1 className="text-[14px] mb-4">{video.title}</h1>
             <div className="mt-3 flex items-center justify-between text-gray-700 dark:text-gray-300">
               <p className="text-xs text-gray-500">
-                {video?.viewCount} views • {video?.publishedAt}
+                {video.viewCount} views • {video.publishedAt}
               </p>
               <div className="flex gap-4 items-center">
-                <button
+              <button
                   className={`flex items-center gap-1 text-xs ${
                     likeStatus === "like" ? "text-blue-500" : "text-gray-600"
                   } hover:text-blue-700`}
@@ -112,8 +110,10 @@ const VideoDetailPage: React.FC = () => {
                   <AiOutlineLike size={20} />
                   <span>{likeStatus === "like" ? "Liked" : "Like"}</span>
                 </button>
+
+                {/* Dislike Button */}
                 <button
-                  className={`flex items-center gap-1 text-xs ${
+                  className={`flex items-center gap-1 text-xs  ${
                     likeStatus === "dislike" ? "text-red-500" : "text-gray-600"
                   } hover:text-red-700`}
                   onClick={toggleDislike}
@@ -121,25 +121,24 @@ const VideoDetailPage: React.FC = () => {
                   <AiOutlineDislike size={20} />
                   <span>{likeStatus === "dislike" ? "Disliked" : "Dislike"}</span>
                 </button>
-                <button
-                  onClick={() => saveVideo(video as VideoDetails)}
-                  className="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-800"
-                >
+                <button  onClick={() => saveVideo(video)} className="flex items-center gap-1 text-xs  text-gray-600 dark:text-gray-400 hover:text-gray-800">
                   <BiListPlus size={20} />
-                  {savedVideos.some((eachVideo: VideoDetails) => eachVideo.id === video?.id)
-                    ? "Unsave"
-                    : "Save"}
+                  {savedVideos.some((eachVideo) => eachVideo.id === video.id) ? "Unsave" : "Save"}
                 </button>
               </div>
             </div>
             <hr className="my-4" />
 
-            <div className="flex gap-3">
-              <Image height={30} width={30} src={video?.profileImage} alt="Channel" className="w-12 h-12 rounded-full" />
+            <div className="flex   gap-3">
+              <img
+                src={video.profileImage}
+                alt="Channel"
+                className="w-12 h-12 rounded-full"
+              />
               <div className="flex flex-col">
-                <p className="">{video?.name}</p>
-                <p className="text-xs">{video?.subscriberCount} Subscribers</p>
-                <p className="text-gray-400 text-xs">{video?.description}</p>
+                <p className="">{video.name}</p>
+                <p className=" text-xs">{video.subscriberCount} Subscribers </p>
+                <p className="text-gray-400 text-xs">{video.description}</p>
               </div>
             </div>
           </div>
