@@ -8,16 +8,13 @@ import Link from 'next/link'
 import { CgPlayListAdd } from 'react-icons/cg'
 import Image from 'next/image'
 
-const Saved: React.FC = () => {
-  // Extract context with proper typing
-  const savedContext = useContext<ThemeAndVideoContextType | null>(ThemeAndVideoContext);
+const Saved = () => {
 
-  // Handle null case
-  if (!savedContext) {
-    return <p>Loading...</p>;  // Prevents runtime errors
-  }
 
-  const { savedVideos, isDarkTheme } = savedContext;
+
+ 
+
+  const { savedVideos, isDarkTheme } = useContext(ThemeAndVideoContext);
   
   return (
     <>
@@ -39,7 +36,7 @@ const Saved: React.FC = () => {
           </div>
 
           {savedVideos.length > 0 ? (
-            savedVideos.map((eachVideo: Video) => (
+            savedVideos.map((eachVideo) => (
               <Link href={`videos/${eachVideo.id}`} key={eachVideo.id} className="p-1 w-70 m-2 list-none flex flex-col">
                 <div>
                   <Image width={500} height={500} alt="thumbnail" src={eachVideo.thumbnailUrl} />
