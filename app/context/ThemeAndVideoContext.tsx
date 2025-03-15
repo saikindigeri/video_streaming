@@ -17,15 +17,8 @@ interface ThemeAndVideoContextType {
   changeTab: (tab: string) => void;
 }
 
-// Create context with a default value
-const ThemeAndVideoContext = createContext<ThemeAndVideoContextType>({
-  isDarkTheme: false,
-  savedVideos: [],
-  toggleTheme: () => {},
-  addVideo: () => {},
-  activeTab: "Home",
-  changeTab: () => {},
-});
+// Create context with an undefined default value
+const ThemeAndVideoContext = createContext<ThemeAndVideoContextType | null>(null);
 
 // Define props for the provider
 interface ThemeAndVideoProviderProps {
@@ -56,23 +49,14 @@ export const ThemeAndVideoProvider: React.FC<ThemeAndVideoProviderProps> = ({ ch
   };
 
   const addVideo = (video: Video) => {
-    setSavedVideos((prevVideos) => {
-      const isAlreadySaved = prevVideos.some((eachVideo) => eachVideo.id === video.id);
-
-      if (isAlreadySaved) {
-        console.log("Removing video:", video.id);
-        return prevVideos.filter((eachVideo) => eachVideo.id !== video.id); // Remove video
-      } else {
-        console.log("Adding video:", video.id);
-        return [...prevVideos, video]; // Add video
-      }
-    });
+    setSavedVideos((prevVideos) =>
+      prevVideos.some((eachVideo) => eachVideo.id === video.id)
+        ? prevVideos.filter((eachVideo) => eachVideo.id !== video.id) // Remove video if already saved
+        : [...prevVideos, video] // Add video if not saved
+    );
   };
 
-  const changeTab = (tab: string) => {
-    console.log("Changing tab to:", tab);
-    setActiveTab(tab);
-  };
+  const changeTab = (tab: string) => setActiveTab(tab);
 
   return (
     <ThemeAndVideoContext.Provider
