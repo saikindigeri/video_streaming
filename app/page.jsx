@@ -8,6 +8,7 @@ import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import Link from "next/link";
 import Sidebar from "./components/Sidebar";
 
+
 const Home = () => {
   const [showBanner, setShowBanner] = useState(true);
   const [videos, setVideos] = useState([]);

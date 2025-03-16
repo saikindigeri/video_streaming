@@ -6,9 +6,10 @@ import ReactPlayer from "react-player";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { BiListPlus } from "react-icons/bi";
 import Header from "@/app/components/Header";
+import Sidebar from '../../components/Sidebar';
 
 import ThemeAndVideoContext from "@/app/context/ThemeAndVideoContext";
-import Sidebar from "@/app/components/Sidebar";
+
 
 const VideoDetailPage = () => {
   const { id } = useParams(); // Get video ID dynamically

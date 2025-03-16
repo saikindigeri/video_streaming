@@ -50,7 +50,7 @@ const Trending = () => {
     <>
       <Header />
       <div>
-        <Sidebar />
+        <Sidebar/>
         <div className="flex-1 md:ml-50 ml-24 md:mb-0 mb-15 mt-15 overflow-y-auto min-h-screen">
           {/* Banner Section */}
           <div className={`flex p-6 items-center justify-start ${isDarkTheme ? 'bg-stone-800' : 'bg-gray-200'}`}>
