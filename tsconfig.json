@@ -21,6 +21,7 @@
     "paths": {
       "@/*": ["./*"]
     }
+    
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/saved/page.jsx", "app/context/ThemeAndVideoContext.js", "app/videos/[id]/page.jsx", "app/components/Sidebar.jsx", "app/gaming/page.jsx", "app/trending/page.jsx", "app/page.jsx"],
   "exclude": ["node_modules"]

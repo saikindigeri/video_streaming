@@ -1,7 +1,6 @@
 "use client";
 import { useContext } from "react";
 import Link from "next/link";
-
 import ThemeAndVideoContext from "../context/ThemeAndVideoContext";
 
 import { AiFillHome } from "react-icons/ai";
@@ -10,7 +9,7 @@ import { SiYoutubegaming } from "react-icons/si";
 import { CgPlayListAdd } from "react-icons/cg";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
-export default function Sidebar() {
+const Sidebar = () => {
   const { isDarkTheme, activeTab, changeTab } = useContext(ThemeAndVideoContext);
 
   const menuItems = [
@@ -56,4 +55,6 @@ export default function Sidebar() {
       </div>
     </nav>
   );
-}
+};
+
+export default Sidebar;
