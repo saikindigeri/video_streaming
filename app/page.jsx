@@ -8,20 +8,10 @@ import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import Link from "next/link";
 import Sidebar from "./components/Sidebar";
 
-interface Video {
-  id: string;
-  title: string;
-  thumbnailUrl: string;
-  viewCount: string;
-  publishedAt: string;
-  name: string;
-  profileImageUrl: string;
-}
-
-const Home: React.FC = () => {
-  const [showBanner, setShowBanner] = useState<boolean>(true);
-  const [videos, setVideos] = useState<Video[]>([]);
-  const [searchInput, setSearchInput] = useState<string>("");
+const Home = () => {
+  const [showBanner, setShowBanner] = useState(true);
+  const [videos, setVideos] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     const fetchVideos = async () => {
@@ -34,7 +24,7 @@ const Home: React.FC = () => {
 
       const url = `https://apis.ccbp.in/videos/all?search=${encodeURIComponent(searchInput)}`;
 
-      const options: RequestInit = {
+      const options = {
         headers: {
           Authorization: `Bearer ${jwtToken}`,
         },
@@ -49,8 +39,7 @@ const Home: React.FC = () => {
 
         const data = await response.json();
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const updatedData: Video[] = data.videos.map((eachVideo: any) => ({
+        const updatedData = data.videos.map((eachVideo) => ({
           id: eachVideo.id,
           title: eachVideo.title,
           thumbnailUrl: eachVideo.thumbnail_url,
