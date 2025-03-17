@@ -62,7 +62,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div className="flex h-screen">
+      <div className="flex h-screen overflow-y-hidden">
         <Sidebar />
         <div className="flex-1 md:ml-50 ml-24 md:mb-0 mb-15 mt-15 overflow-y-auto min-h-screen">
           {/* Banner Section */}
@@ -104,7 +104,7 @@ const Home = () => {
             <input
               type="text"
               placeholder="Search"
-              className="w-1/3 m-2 border p-1 outline-neutral-200"
+              className="w-1/4 m-2 border focus:outline-none focus:ring-0 rounded-base p-1  "
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
             />

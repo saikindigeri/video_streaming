@@ -6,10 +6,9 @@ import ReactPlayer from "react-player";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { BiListPlus } from "react-icons/bi";
 import Header from "../../components/Header";
-import Sidebar from '../../components/Sidebar/Sidebar';
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 import ThemeAndVideoContext from "../../context/ThemeAndVideoContext";
-
 
 const VideoDetailPage = () => {
   const { id } = useParams(); // Get video ID dynamically
@@ -17,9 +16,8 @@ const VideoDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [likeStatus, setLikeStatus] = useState(null); // "like", "dislike", or null
-  
-  const { addVideo,savedVideos } = useContext(ThemeAndVideoContext);
 
+  const { addVideo, savedVideos } = useContext(ThemeAndVideoContext);
 
   const saveVideo = (video) => {
     addVideo(video);
@@ -37,6 +35,7 @@ const VideoDetailPage = () => {
         },
         method: "GET",
       };
+
       try {
         const response = await fetch(
           `https://apis.ccbp.in/videos/${id}`,
@@ -46,8 +45,6 @@ const VideoDetailPage = () => {
         if (!response.ok) throw new Error("Failed to fetch video");
 
         const data = await response.json();
-
-        console.log(data);
 
         setVideo({
           id: data.video_details.id,
@@ -79,71 +76,78 @@ const VideoDetailPage = () => {
     setLikeStatus(likeStatus === "dislike" ? null : "dislike");
   };
 
-  if (loading) return <p className="text-center text-xl">Loading...</p>;
-  if (error) return <p className="text-center text-red-500">{error}</p>;
-
   return (
     <>
       <Header />
-      <div>
+      <div className="flex">
         <Sidebar />
-        <div className=" flex-1 py-6 md:ml-50 ml-25 mt-20 min-h-screen">
-          <div className="w-100% ml-3 mr-3 h-[400px]">
-            <ReactPlayer
-              url={video.videoUrl}
-              controls
-              width="100%"
-              height="100%"
-            />
-          </div>
-          <div className="ml-3 mb-1 mr-3">
-            <h1 className="text-[14px] mb-4">{video.title}</h1>
-            <div className="mt-3 flex items-center justify-between text-gray-700 dark:text-gray-300">
-              <p className="text-xs text-gray-500">
-                {video.viewCount} views • {video.publishedAt}
-              </p>
-              <div className="flex gap-4 items-center">
-              <button
-                  className={`flex items-center gap-1 text-xs ${
-                    likeStatus === "like" ? "text-blue-500" : "text-gray-600"
-                  } hover:text-blue-700`}
-                  onClick={toggleLike}
-                >
-                  <AiOutlineLike size={20} />
-                  <span>{likeStatus === "like" ? "Liked" : "Like"}</span>
-                </button>
-
-                {/* Dislike Button */}
-                <button
-                  className={`flex items-center gap-1 text-xs  ${
-                    likeStatus === "dislike" ? "text-red-500" : "text-gray-600"
-                  } hover:text-red-700`}
-                  onClick={toggleDislike}
-                >
-                  <AiOutlineDislike size={20} />
-                  <span>{likeStatus === "dislike" ? "Disliked" : "Dislike"}</span>
-                </button>
-                <button  onClick={() => saveVideo(video)} className="flex items-center gap-1 text-xs  text-gray-600 dark:text-gray-400 hover:text-gray-800">
-                  <BiListPlus size={20} />
-                  {savedVideos.some((eachVideo) => eachVideo.id === video.id) ? "Unsave" : "Save"}
-                </button>
+        <div className="flex-1 py-6 md:ml-50 ml-25 mt-20 min-h-screen px-4">
+          {loading ? (
+            <div className="w-full ml-3 mr-3 h-[400px] bg-gray-300 dark:bg-gray-300 animate-pulse rounded-md"></div>
+          ) : error ? (
+            <p className="text-center text-red-500">{error}</p>
+          ) : (
+            <>
+              <div className="w-full ml-3 mr-3 h-[400px]">
+                <ReactPlayer
+                  url={video.videoUrl}
+                  controls
+                  width="100%"
+                  height="100%"
+                />
               </div>
-            </div>
-            <hr className="my-4" />
-
-            <div className="flex   gap-3">
-              <img
-                src={video.profileImage}
-                alt="Channel"
-                className="w-12 h-12 rounded-full"
-              />
-              <div className="flex flex-col">
-                <p className="">{video.name}</p>
-                <p className=" text-xs">{video.subscriberCount} Subscribers </p>
-                <p className="text-gray-400 text-xs">{video.description}</p>
+              <div className="ml-3 mb-1 mr-3">
+                <h1 className="text-[14px] mb-4">{video.title}</h1>
+                <div className="mt-3 flex items-center justify-between text-gray-700 dark:text-gray-300">
+                  <p className="text-xs text-gray-500">
+                    {video.viewCount} views • {video.publishedAt}
+                  </p>
+                  <div className="flex gap-4 items-center">
+                    <button
+                      className={`flex items-center gap-1 text-xs ${
+                        likeStatus === "like" ? "text-blue-500" : "text-gray-600"
+                      } hover:text-blue-700`}
+                      onClick={toggleLike}
+                    >
+                      <AiOutlineLike size={20} />
+                      <span>{likeStatus === "like" ? "Liked" : "Like"}</span>
+                    </button>
+                    <button
+                      className={`flex items-center gap-1 text-xs ${
+                        likeStatus === "dislike" ? "text-red-500" : "text-gray-600"
+                      } hover:text-red-700`}
+                      onClick={toggleDislike}
+                    >
+                      <AiOutlineDislike size={20} />
+                      <span>{likeStatus === "dislike" ? "Disliked" : "Dislike"}</span>
+                    </button>
+                    <button
+                      onClick={() => saveVideo(video)}
+                      className="flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-800"
+                    >
+                      <BiListPlus size={20} />
+                      {savedVideos.some((eachVideo) => eachVideo.id === video.id)
+                        ? "Unsave"
+                        : "Save"}
+                    </button>
+                  </div>
+                </div>
+                <hr className="my-4" />
+                <div className="flex gap-3">
+                  <img
+                    src={video.profileImage}
+                    alt="Channel"
+                    className="w-12 h-12 rounded-full"
+                  />
+                  <div className="flex flex-col">
+                    <p>{video.name}</p>
+                    <p className="text-xs">{video.subscriberCount} Subscribers</p>
+                    <p className="text-gray-400 text-xs">{video.description}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
     </>
