@@ -29,7 +29,7 @@ const Sidebar = () => {
             href={item.href}
             onClick={() => changeTab(item.name)}
             className={`flex flex-col items-center md:flex-row md:space-x-4 p-3 rounded-lg w-full justify-center md:justify-start ${
-              activeTab === item.name ? "text-red-500" : "hover:bg-gray-200"
+              activeTab === item.name ? "text-red-500" : isDarkTheme ? "hover:bg-gray-600" : "hover:bg-gray-200"
             }`}
           >
             {item.icon}

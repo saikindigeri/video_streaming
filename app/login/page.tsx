@@ -39,55 +39,57 @@ export default function Login() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-r">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md bg-white p-8 rounded-xl shadow-xl transition-transform transform "
-      >
-        <h2 className="text-3xl font-extrabold text-gray-800 text-center mb-6">Login</h2>
+<div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
+  <form
+    onSubmit={handleSubmit}
+    className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg"
+  >
+    <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Login</h2>
 
-        {/* Email Input */}
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Email</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="Enter your email"
-            className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/* Password Input */}
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-semibold mb-1">Password</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="Enter your password"
-            className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg transition hover:bg-blue-700 active:scale-95"
-        >
-          Login
-        </button>
-
-        {/* Extra Options */}
-        <p className="text-center text-gray-600 text-sm mt-4">
-        Don  &apos;t have an account?{" "}
-          <a href="/register" className="text-blue-600 font-semibold hover:underline">
-            Sign Up
-          </a>
-        </p>
-      </form>
+    {/* Email Input */}
+    <div className="mb-4">
+      <label className="block text-gray-700 font-medium mb-2">Email</label>
+      <input
+        name="email"
+        type="email"
+        placeholder="Enter your email"
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+        onChange={handleChange}
+        required
+      />
     </div>
+
+    {/* Password Input */}
+    <div className="mb-4">
+      <label className="block text-gray-700 font-medium mb-2">Password</label>
+      <input
+        name="password"
+        type="password"
+        placeholder="Enter your password"
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+        onChange={handleChange}
+        required
+      />
+    </div>
+
+    {/* Submit Button */}
+    <button
+      type="submit"
+      className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg transition hover:bg-blue-700"
+    >
+      Login
+    </button>
+
+    {/* Extra Options */}
+    <p className="text-center text-gray-600 text-sm mt-4">
+      Don&apos;t have an account?{" "}
+      <a href="/register" className="text-blue-600 font-semibold hover:underline">
+        Sign Up
+      </a>
+    </p>
+  </form>
+</div>
+
+
   );
 }
