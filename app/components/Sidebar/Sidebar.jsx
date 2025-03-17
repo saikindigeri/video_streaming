@@ -1,7 +1,7 @@
 "use client";
 import { useContext } from "react";
 import Link from "next/link";
-import ThemeAndVideoContext from "../context/ThemeAndVideoContext";
+import ThemeAndVideoContext from "../../context/ThemeAndVideoContext";
 
 import { AiFillHome } from "react-icons/ai";
 import { HiFire } from "react-icons/hi";

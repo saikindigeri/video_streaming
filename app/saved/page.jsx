@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { CgPlayListAdd } from 'react-icons/cg'
 import Image from 'next/image'
 import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../components/Sidebar/Sidebar'
 
 
 const Saved = () => {

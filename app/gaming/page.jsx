@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { SiYoutubegaming } from 'react-icons/si';
 import ThemeAndVideoContext from '../context/ThemeAndVideoContext';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/Sidebar/Sidebar';
 
 const Gaming = () => {
   const [gamingVideos, setGamingVideos] = useState([]);

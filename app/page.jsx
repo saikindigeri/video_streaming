@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Image from "next/image";
 import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import Link from "next/link";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 
 const Home = () => {

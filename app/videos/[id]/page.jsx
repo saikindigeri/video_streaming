@@ -6,7 +6,7 @@ import ReactPlayer from "react-player";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { BiListPlus } from "react-icons/bi";
 import Header from "../../components/Header";
-import Sidebar from '../../components/Sidebar';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 import ThemeAndVideoContext from "../../context/ThemeAndVideoContext";
 

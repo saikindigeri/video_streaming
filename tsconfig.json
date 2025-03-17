@@ -28,7 +28,7 @@
     "app/saved/page.jsx",
     "app/context/ThemeAndVideoContext.js",
     "app/videos/[id]/page.jsx",
-    "app/components/Sidebar.jsx",
+    "app/components/Sidebar/Sidebar.jsx",
     "app/gaming/page.jsx",
     "app/trending/page.jsx",
     "app/page.jsx",

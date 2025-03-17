@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { HiFire } from 'react-icons/hi';
 import ThemeAndVideoContext from '../context/ThemeAndVideoContext';
 import Image from 'next/image';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/Sidebar/Sidebar';
 
 const Trending = () => {
   const [trendingVideos, setTrendingVideos] = useState([]);
