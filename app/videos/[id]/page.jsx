@@ -5,10 +5,10 @@ import { useParams } from "next/navigation"; // For dynamic route params
 import ReactPlayer from "react-player";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { BiListPlus } from "react-icons/bi";
-import Header from "@/app/components/Header";
+import Header from "../../components/Header";
 import Sidebar from '../../components/Sidebar';
 
-import ThemeAndVideoContext from "@/app/context/ThemeAndVideoContext";
+import ThemeAndVideoContext from "../../context/ThemeAndVideoContext";
 
 
 const VideoDetailPage = () => {
